@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
 import { Copy, Trash, Pin, PinOff, Pencil, Star, Trash2 } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Badge } from "@/components/ui/badge";
@@ -49,75 +56,69 @@ export function SnippetCard({
 	}
 
 	return (
-		<Card className="w-sm h-fit">
-					<CardHeader>
-						<div className="flex items-center justify-between mb-2">
-							<div className="flex gap-2 h-fit">
-								<Badge className="bg-[#E34F26]">HTML</Badge>
-								<Badge className="bg-[#1572B6]">CSS</Badge>
-								<Badge className="bg-[#F7DF1E] text-black">JS</Badge>
-							</div>
-							<div className="flex gap-2">
-								<Button
-									onClick={toggleStarred}
-									variant={starred ? "default" : "outline"}
-								>
-									<Star />
-								</Button>
-								<Button
-									variant={pinned ? "default" : "outline"}
-									onClick={togglePinned}
-								>
-									<Pin />
-								</Button>
-							</div>
-						</div>
-						<CardTitle className="text-2xl mb-2">
-							{snippet.title}
-						</CardTitle>
-						<CardDescription className="text-base">
-							We need to develop website for the store that sells flowers and
-							decorations.
-						</CardDescription>
-					</CardHeader>
-					<CardContent className="flex justify-between items-center">
-						<div className="flex gap-2">
-							<Avatar className="rounded-none h-6 w-6">
-								<AvatarImage src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="@shadcn" />
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-							<Avatar className="rounded-none h-6 w-6">
-								<AvatarImage src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="@shadcn"/>
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-							<Avatar className="rounded-none h-6 w-6">
-								<AvatarImage
-									src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg"
-									alt="@shadcn"
-								/>
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-							<Avatar className="rounded-none h-6 w-6">
-								<AvatarImage
-									src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-									alt="@shadcn"
-								/>
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-						</div>
-						<div className="flex gap-2">
-							<Button variant="destructive">
-								<Trash2 />
-							</Button>
-							<Button>
-								<Pencil />
-							</Button>
-						</div>
-					</CardContent>
-					{/* <CardFooter className="flex justify-between">
+		<Card className="w-sm h-fit bg-slate-200 hover:border-gray-50">
+			<CardHeader>
+				<div className="flex items-center justify-between mb-2 -mt-2">
+					<div className="flex gap-2 h-fit flex-wrap mr-5">
+						{/* <Badge className="bg-[#E34F26]">HTML</Badge>
+						<Badge className="bg-[#1572B6]">CSS</Badge>
+						<Badge className="bg-[#F7DF1E] text-black">JS</Badge> */}
+						<Badge className="bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-400 rounded-full px-3 py-1 ">HTML</Badge>
+						<Badge className="bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-400 rounded-full px-3 py-1 ">CSS</Badge>
+					</div>
+					<div className="flex gap-2">
+						<Button
+							onClick={toggleStarred}
+							variant={starred ? "default" : "outline"}
+							className="rounded-full"
+						>
+							<Star />
+						</Button>
+						<Button
+							variant={pinned ? "default" : "outline"}
+							onClick={togglePinned}
+							className="rounded-full"
+						>
+							<Pin />
+						</Button>
+					</div>
+				</div>
+				<CardTitle className="text-xl">{snippet.title}</CardTitle>
+				<CardDescription className="text-sm">
+					We need to develop website for the store that sells flowers and
+					decorations.
+				</CardDescription>
+			</CardHeader>
+			<CardContent className="flex justify-between items-center -mb-3">
+				<div className="flex gap-2">
+					<Avatar className="rounded-none h-5 w-5">
+						<AvatarImage
+							src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+							alt="@shadcn"
+						/>
+						<AvatarFallback>CN</AvatarFallback>
+					</Avatar>
+					<Avatar className="rounded-none h-5 w-5">
+						<AvatarImage
+							src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+							alt="@shadcn"
+						/>
+						<AvatarFallback>CN</AvatarFallback>
+					</Avatar>
+				</div>
+				<div className="flex gap-2">
+					<Button variant="destructive" className="rounded-full">
+						<Trash2 />
+					</Button>
+					<Button className="rounded-full">
+						<Pencil />
+					</Button>
+				</div>
+			</CardContent>
+			{/* <CardFooter className="flex justify-between">
 						<Button variant="destructive">Delete</Button>
 						<Button>Edit</Button>
 					</CardFooter> */}
-				</Card>
+		</Card>
 	);
 }

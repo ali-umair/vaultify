@@ -1,31 +1,25 @@
 "use client";
+import { useEffect } from "react";
 
-// import { SearchInput } from "@/components/ui/SearchInput";
-import { SnippetList } from "@/components/snippets/SnippetList";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Button } from "@/components/ui/button";
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Pencil, Pin, PinOff, Star, StarOff, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { SnippetCard } from "@/components/snippets/SnippetCard";
+	SidebarInset,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
-	const snippet = {
-		id: 1,
-		title: "Share media plan",
-		language: "TypeScript",
-		code: "null",
-	};
+
+	const router = useRouter();
+	const isAuthenticated = true;
+
+	useEffect(() => {
+		if (!isAuthenticated) {
+			router.push("/login"); // Redirect to login
+		}
+	}, [isAuthenticated, router]);
+
 	const notifications = [
 		{
 			title: "Your call has been confirmed.",
@@ -50,35 +44,53 @@ export default function DashboardPage() {
 		react: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
 	};
 	return (
-		<div className="flex gap-10">
-			{/* <div className="">
-				<Sidebar />
-			</div>
-			<div className="p-6"> */}
-			{/* <h1 className="text-2xl font-bold">Dashboard</h1> */}
-			{/* <SearchInput placeholder="Search snippets..." className="mt-4" /> */}
-
-			{/* <section className="mt-6">
-					<h2 className="text-lg font-semibold">📌 Pinned Snippets</h2>
-					<SnippetList filter="pinned" />
-				</section>
-
-				<section className="mt-6">
-					<h2 className="text-lg font-semibold">📝 Recent Snippets</h2>
-					<SnippetList filter="recent" />
-				</section>
+		// <div className="">
+		// 	<div className="fixed left-4 top-2 h-[97%]">
+		// 		<Sidebar />
+		// 	</div>
+		// 	<div className="fixed left-70 top-2 h-[97%] w-[calc(94vw_*_var(--scale-factor))] dark:bg-[#141414] bg-slate-300 rounded-lg flex flex-col">
+		// 		<div className="flex items-center justify-between pb-5 px-6 py-4">
+		// 			<h1 className="text-2xl font-medium">My Library</h1>
+		// 			<div id="search-btns" className="flex items-center gap-2">
+		// 				{/* <Button
+		// 					type="submit"
+		// 					variant="outline"
+		// 					size="lg"
+		// 					className="rounded-full"
+		// 				>
+		// 					<Filter />
+		// 					Filter
+		// 				</Button> */}
+		// 				<Button type="submit" size="lg" className="rounded-full">
+		// 					<Plus />
+		// 					Add New
+		// 				</Button>
+		// 			</div>
+		// 		</div>
+		// 		<div className="flex-1 overflow-y-auto p-6">
+		// 			<Section />
+		// 			<Section />
+		// 		</div>
+		// 	</div>
+		// </div>
+		<SidebarProvider>
+			<AppSidebar />
+			<SidebarInset>
+				<div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+					{/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+				<div className="aspect-video rounded-xl bg-muted/50" />
+				<div className="aspect-video rounded-xl bg-muted/50" />
 			</div> */}
-			<div className="">
-				<Sidebar />
-			</div>
-			<div className="pt-5">
-				<h1 className="text-3xl font-medium mb-5">Home</h1>
-				<div className="flex flex-wrap gap-3">
-					<SnippetCard snippet={snippet} />
-					<SnippetCard snippet={snippet} />
-					<SnippetCard snippet={snippet} />
+					{/* <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" /> */}
+					<header className="flex h-16 shrink-0 items-center gap-2">
+						<div className="w-full flex items-center justify-between gap-2 px-4">
+							<div className="flex items-center gap-2 px-4">
+								<SidebarTrigger className="-ml-1" />
+							</div>
+						</div>
+					</header>
 				</div>
-			</div>
-		</div>
+			</SidebarInset>
+		</SidebarProvider>
 	);
 }
