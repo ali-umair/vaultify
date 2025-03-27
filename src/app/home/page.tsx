@@ -1,16 +1,45 @@
 "use client";
 import { useEffect } from "react";
-
-import {
-	SidebarInset,
-	SidebarProvider,
-	SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 import { useRouter } from "next/navigation";
+import {
+	Clock,
+	Code,
+	Ellipsis,
+	EllipsisVertical,
+	MoveRight,
+	MoveUpRight,
+	NotebookPen,
+	Pin,
+	Plus,
+	Star,
+	Tag,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardContent,
+	CardFooter,
+} from "@/components/ui/card";
+import HomeCards from "./vault/HomeCards";
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import TableRowRecent from "./vault/TableRowRecent";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function DashboardPage() {
-
 	const router = useRouter();
 	const isAuthenticated = true;
 
@@ -20,20 +49,13 @@ export default function DashboardPage() {
 		}
 	}, [isAuthenticated, router]);
 
-	const notifications = [
-		{
-			title: "Your call has been confirmed.",
-			description: "1 hour ago",
-		},
-		{
-			title: "You have a new message!",
-			description: "1 hour ago",
-		},
-		{
-			title: "Your subscription is expiring soon!",
-			description: "2 hours ago",
-		},
-	];
+	type Item = {
+		key: string;
+		languageIcon: string;
+		language: string;
+		title: string;
+		description: string;
+	};
 	const languageLogos: Record<string, string> = {
 		html: "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg",
 		css: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg",
@@ -43,54 +65,201 @@ export default function DashboardPage() {
 			"https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
 		react: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
 	};
+	const recent: Array<Item> = [
+		{
+			key: "1",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+			language: "React",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "2",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
+			language: "TypeScript",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "3",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
+			language: "TypeScript",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "4",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
+			language: "TypeScript",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "5",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
+			language: "TypeScript",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "6",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
+			language: "TypeScript",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "7",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg",
+			language: "TypeScript",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "8",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+			language: "React",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "9",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+			language: "React",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "10",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+			language: "React",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "11",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+			language: "React",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+		{
+			key: "12",
+			languageIcon:
+				"https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+			language: "React",
+			title: "Start managing your vault",
+			description:
+				"We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations We need to develop website for the store that sells flowers and decorations",
+		},
+	];
 	return (
-		// <div className="">
-		// 	<div className="fixed left-4 top-2 h-[97%]">
-		// 		<Sidebar />
-		// 	</div>
-		// 	<div className="fixed left-70 top-2 h-[97%] w-[calc(94vw_*_var(--scale-factor))] dark:bg-[#141414] bg-slate-300 rounded-lg flex flex-col">
-		// 		<div className="flex items-center justify-between pb-5 px-6 py-4">
-		// 			<h1 className="text-2xl font-medium">My Library</h1>
-		// 			<div id="search-btns" className="flex items-center gap-2">
-		// 				{/* <Button
-		// 					type="submit"
-		// 					variant="outline"
-		// 					size="lg"
-		// 					className="rounded-full"
-		// 				>
-		// 					<Filter />
-		// 					Filter
-		// 				</Button> */}
-		// 				<Button type="submit" size="lg" className="rounded-full">
-		// 					<Plus />
-		// 					Add New
-		// 				</Button>
-		// 			</div>
-		// 		</div>
-		// 		<div className="flex-1 overflow-y-auto p-6">
-		// 			<Section />
-		// 			<Section />
-		// 		</div>
-		// 	</div>
-		// </div>
-		<SidebarProvider>
-			<AppSidebar />
-			<SidebarInset>
-				<div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-					{/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-				<div className="aspect-video rounded-xl bg-muted/50" />
-				<div className="aspect-video rounded-xl bg-muted/50" />
-			</div> */}
-					{/* <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" /> */}
-					<header className="flex h-16 shrink-0 items-center gap-2">
-						<div className="w-full flex items-center justify-between gap-2 px-4">
-							<div className="flex items-center gap-2 px-4">
-								<SidebarTrigger className="-ml-1" />
+		<div className="flex flex-1 flex-col gap-4 p-4">
+			{/* Main Grid Layout - Two Columns */}
+			<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+				{/* Left Side (2/3 width) */}
+				<div className="col-span-2 flex flex-col gap-4">
+					{/* Top Row - Three Cards */}
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+						<HomeCards
+							title="Total Snippets"
+							count={35}
+							icon={<Code className="text-muted-foreground h-5 w-5" />}
+							subText="last added 3m ago"
+						/>
+						<HomeCards
+							title="Total Notes"
+							count={15}
+							icon={<NotebookPen className="text-muted-foreground h-5 w-5" />}
+							subText="last added 5h ago"
+						/>
+						<HomeCards
+							title="Total Tags"
+							count={7}
+							icon={<Tag className="text-muted-foreground h-5 w-5" />}
+							subText="last added 1d ago"
+						/>
+					</div>
+				</div>
+				<Card className="lg:w-full">
+					<CardHeader className="flex flex-row items-center justify-between">
+						<CardTitle className="w-fit">Most Used</CardTitle>
+						<Star className="text-muted-foreground h-5 w-5" />
+					</CardHeader>
+					<CardContent>
+						<div className="flex justify-around font-bold">
+							<div className="flex items-center justify-center gap-3">
+								<span className="">Tag:</span>
+								<Badge variant="secondary">Vaultify</Badge>
+							</div>
+							<div className="flex items-center justify-center gap-3">
+								<span>Language:</span>
+								<Avatar className="rounded-none h-7 w-7">
+									<AvatarImage
+										src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+										alt="@shadcn"
+									/>
+									<AvatarFallback>React</AvatarFallback>
+								</Avatar>
+							</div>
+							<div className="flex items-center justify-center gap-3">
+								<span>Type:</span>
+								<Code className="text-muted-foreground h-7 w-7" />
 							</div>
 						</div>
-					</header>
+					</CardContent>
+				</Card>
+			</div>
+			<div className="flex">
+				<div className="w-full">
+					<div className="p-4 flex items-center gap-2 font-bold text-lg">
+						<Pin className="h-5 w-5" />
+						Pinned
+					</div>
+					<ScrollArea className="h-[58vh] w-full">
+						<div className="px-4">
+							{recent.map((item) => (
+								<TableRowRecent item={item}></TableRowRecent>
+							))}
+						</div>
+					</ScrollArea>
 				</div>
-			</SidebarInset>
-		</SidebarProvider>
+				{/* <div className="w-1/2">
+					<h3 className="p-4 flex items-center gap-2 font-bold text-lg">
+						<Star className="h-5 w-5" />
+						Favorites
+					</h3>
+					<ScrollArea className="h-[55vh] w-full">
+						<div className="px-4 w-full">
+							{recent.map((item) => (
+								<TableRowRecent item={item}></TableRowRecent>
+							))}
+						</div>
+					</ScrollArea>
+				</div> */}
+			</div>
+		</div>
 	);
 }

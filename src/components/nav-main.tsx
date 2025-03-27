@@ -45,7 +45,7 @@ export function NavMain({
 					<SidebarMenuButton asChild tooltip="Home">
 						<Link
 							href="/home"
-							className={`link ${pathname == "/home" ? "bg-zinc-800" : ""}`}
+							className={`link ${pathname == "/home" ? "bg-muted-foreground/30" : ""}`}
 						>
 							<Home />
 							<span>Home</span>
@@ -55,8 +55,8 @@ export function NavMain({
                 <SidebarMenuItem>
 					<SidebarMenuButton asChild tooltip="My Vault">
 						<Link
-							href="/vault"
-							className={`link ${pathname == "/vault" ? "bg-zinc-800" : ""}`}
+							href="/home/vault"
+							className={`link ${pathname == "/home/vault" ? "bg-muted-foreground/30" : ""}`}
 						>
 							<FolderKey />
 							<span>My Vault</span>
@@ -67,7 +67,7 @@ export function NavMain({
 					<SidebarMenuButton asChild tooltip="Settings">
 						<Link
 							href="/settings"
-							className={`link ${pathname == "/settings" ? "bg-zinc-800" : ""}`}
+							className={`link ${pathname == "/settings" ? "bg-muted-foreground/30" : ""}`}
 						>
 							<Settings2 />
 							<span>Settings</span>

@@ -57,7 +57,7 @@ const data = {
 		},
 		{
 			title: "My Vault",
-			url: "/home",
+			url: "/home/vault",
 			icon: FolderKey,
 			items: [
 				{
