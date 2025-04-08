@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Only ignore temporary or generated files, not migrations
+drizzle/*.temp.*
+drizzle/*.log
