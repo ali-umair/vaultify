@@ -1,20 +1,10 @@
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import {
-	Clock,
 	Code,
-	Ellipsis,
-	EllipsisVertical,
-	MoveRight,
-	MoveUpRight,
 	NotebookPen,
 	Pin,
-	Plus,
 	Star,
 	Tag,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
 	Card,
 	CardHeader,
@@ -24,30 +14,19 @@ import {
 	CardFooter,
 } from "@/components/ui/card";
 import HomeCards from "./vault/HomeCards";
-import {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import TableRowRecent from "./vault/TableRowRecent";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
-export default function DashboardPage() {
-	const router = useRouter();
-	const isAuthenticated = true;
-
-	useEffect(() => {
-		if (!isAuthenticated) {
-			router.push("/login"); // Redirect to login
-		}
-	}, [isAuthenticated, router]);
+export default async function DashboardPage() {
+	const session = await auth();
+	console.log(session);
+	if (!session) {
+		redirect("/login");
+	}
 
 	type Item = {
 		key: string;

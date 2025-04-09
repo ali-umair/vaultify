@@ -27,6 +27,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Session, User } from "next-auth";
 
 const data = {
 	user: {
@@ -129,7 +130,15 @@ const data = {
 	],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+type AppSidebarProps = {
+	session: Session | null; // ideally type this properly if you're using something like NextAuth
+} & Omit<React.ComponentProps<typeof Sidebar>, "session">;
+
+export function AppSidebar({ session, ...props }: AppSidebarProps) {
+	let user: User | undefined;
+	if (session && session.user) {
+		user = session.user;
+	}
 	return (
 		<Sidebar variant="inset" {...props} className="slate-200">
 			<SidebarHeader>
@@ -175,7 +184,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				{/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavUser user={user} />
 			</SidebarFooter>
 		</Sidebar>
 	);

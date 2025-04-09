@@ -1,5 +1,5 @@
-import { LoginForm } from "@/components/login-form";
-import { signIn } from "../../../auth";
+"use client";
+import { githubSignIn } from "@/auth-server";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -9,9 +9,11 @@ import {
 	CardContent,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Github, Link } from "lucide-react";
+import { Github, Loader, LoaderCircle, LoaderPinwheel } from "lucide-react";
+import { useTransition } from "react";
 
 export default function LoginPage() {
+	const [pending, startTransition] = useTransition();
 	return (
 		<div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
 			<div className="flex max-w-sm flex-col gap-6">
@@ -49,19 +51,31 @@ export default function LoginPage() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<form
-								action={async () => {
-									"use server";
-									const result = await signIn("github" , { redirectTo: '/home' });
-								}}
-							>
+							<form>
 								<div className="grid gap-6">
 									<div className="flex flex-col gap-4">
-										<Button variant="outline" className="w-full">
-											<Github className="size-4" />
-											Login with GitHub
+										<Button
+											variant="outline"
+											className="w-full"
+											onClick={() => {
+												startTransition(() => {
+													githubSignIn();
+												});
+											}}
+											disabled={pending}
+										>
+											{pending ? <Loader className="animate-spin"/>  : <Github className="size-4" />}
+											<span>
+												{pending ? "Redirecting..." : "Sign in with GitHub"}
+											</span>
+											
 										</Button>
-										<Button type="submit" variant="outline" className="w-full">
+										{/* <Button
+											type="submit"
+											variant="outline"
+											className="w-full"
+											disabled={pending}
+										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												viewBox="0 0 24 24"
@@ -71,8 +85,11 @@ export default function LoginPage() {
 													fill="currentColor"
 												/>
 											</svg>
-											Login with Google
-										</Button>
+											{pending && <Github className="animate-spin h-4 w-4" />}
+											<span>
+												{pending ? "Redirecting..." : "Sign in with GitHub"}
+											</span>
+										</Button> */}
 									</div>
 								</div>
 							</form>

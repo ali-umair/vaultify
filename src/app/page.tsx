@@ -1,17 +1,12 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+export default async function Home() {
+	const session = await auth();
+	if (session) {
+		redirect("/home");
+	} else {
+		redirect("/login");
+	}
 
-export default function Home() {
-	const router = useRouter();
-	const isAuthenticated = true;
-
-	useEffect(() => {
-		if (!isAuthenticated) {
-			router.push("/login"); // Redirect to login
-		} else if (isAuthenticated) {
-			router.push("/home"); // Redirect to app
-		}
-	}, [isAuthenticated, router]);
-	return <></>;
+	return <></>
 }
