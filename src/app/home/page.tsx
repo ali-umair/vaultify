@@ -1,10 +1,4 @@
-import {
-	Code,
-	NotebookPen,
-	Pin,
-	Star,
-	Tag,
-} from "lucide-react";
+import { Code, Code2, NotebookPen, Pin, Star, Tag } from "lucide-react";
 import {
 	Card,
 	CardHeader,
@@ -165,19 +159,19 @@ export default async function DashboardPage() {
 						<HomeCards
 							title="Total Snippets"
 							count={35}
-							icon={<Code className="text-muted-foreground h-5 w-5" />}
+							icon={<Code2 className="text-indigo-500 h-6 w-6" />}
 							subText="last added 3m ago"
 						/>
 						<HomeCards
 							title="Total Notes"
 							count={15}
-							icon={<NotebookPen className="text-muted-foreground h-5 w-5" />}
+							icon={<NotebookPen className="text-amber-500 h-5 w-5" />}
 							subText="last added 5h ago"
 						/>
 						<HomeCards
 							title="Total Tags"
 							count={7}
-							icon={<Tag className="text-muted-foreground h-5 w-5" />}
+							icon={<Tag className="text-emerald-500 h-5 w-5" />}
 							subText="last added 1d ago"
 						/>
 					</div>
@@ -185,7 +179,7 @@ export default async function DashboardPage() {
 				<Card className="lg:w-full">
 					<CardHeader className="flex flex-row items-center justify-between">
 						<CardTitle className="w-fit">Most Used</CardTitle>
-						<Star className="text-muted-foreground h-5 w-5" />
+						<Star className="fill-yellow-400 text-transparent h-6 w-6" />
 					</CardHeader>
 					<CardContent>
 						<div className="flex justify-around font-bold">
@@ -213,17 +207,17 @@ export default async function DashboardPage() {
 			</div>
 			<div className="flex">
 				<div className="w-full">
-					<div className="p-4 flex items-center gap-2 font-bold text-lg">
+					{/* <div className="p-4 flex items-center gap-2 font-bold text-lg">
 						<Pin className="h-5 w-5" />
 						Pinned
 					</div>
 					<ScrollArea className="h-[58vh] w-full">
 						<div className="px-4">
 							{recent.map((item) => (
-								<TableRowRecent item={item}></TableRowRecent>
+								<TableRowRecent key={item.key} item={item}></TableRowRecent>
 							))}
 						</div>
-					</ScrollArea>
+					</ScrollArea> */}
 				</div>
 				{/* <div className="w-1/2">
 					<h3 className="p-4 flex items-center gap-2 font-bold text-lg">

@@ -148,8 +148,8 @@ export function AppSidebar({ session, ...props }: AppSidebarProps) {
 							<a href="#">
 								<div>
 									<svg
-										width="30"
-										height="30"
+										width="26"
+										height="26"
 										viewBox="0 0 40 40"
 										fill="none"
 										xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +169,7 @@ export function AppSidebar({ session, ...props }: AppSidebarProps) {
 										</defs>
 									</svg>
 								</div>
-								<div className="grid flex-1 text-left text-sm leading-tight">
+								<div className="ml-1 grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate font-semibold">Vaultify</span>
 									<span className="truncate text-xs">Application</span>
 								</div>
